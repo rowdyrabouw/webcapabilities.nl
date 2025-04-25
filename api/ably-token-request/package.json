@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "netlify",
-    "serverless",
-    "typescript"
+    "Netlify",
+    "Serverless",
+    "Typescript"
   ],
   "author": "Netlify",
   "license": "MIT",
