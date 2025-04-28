@@ -63,8 +63,10 @@ Arrange on a plate with soy sauce, wasabi, and pickled ginger.
         try {
           wakelock = await navigator.wakeLock.request("screen");
           console.log("Wakelock is active");
+          alert("Wakelock is active");
         } catch (err) {
           console.error(`${err.name}, ${err.message}`);
+          alert(`${err.name}, ${err.message}`);
         }
       }
 
