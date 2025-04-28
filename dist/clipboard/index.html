@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipboard API</title>
+    <style>
+      #discount {
+        font-weight: bold;
+        color: #e74c3c;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    </style>
+    <script src="script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@speed-highlight/core/dist/themes/dark.css"
+    />
+  </head>
+  <body>
+    <h1>Clipboard API</h1>
+    <p>
+      Enjoy a delicious treat! Get 20% off on all sushi orders for a limited
+      time with code <span id="discount">FISH20</span>. Don't miss out on this
+      amazing offer!
+    </p>
+    <code class="shj-lang-html"> </code>
+    <button id="code-button" type="button">Copy to Clipboard</button>
+    <button id="readText" type="button">Read from Clipboard</button>
+
+    <img
+      id="imageToCopy"
+      src="fugu.png"
+      alt="Example Image"
+      style="cursor: pointer; width: 200px"
+    />
+
+    <script type="module">
+      const htmlCodeContainer = document.querySelector(".shj-lang-html");
+      const htmlCode = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipboard API</title>
+    <style>      
+        `;
+      htmlCodeContainer.textContent = htmlCode.trimLeft().trimRight();
+      import { highlightAll } from "https://unpkg.com/@speed-highlight/core/dist/index.js";
+      highlightAll();
+    </script>
+
+    <script>
+      const codeButton = document.querySelector("#code-button");
+      codeButton.addEventListener("click", () => {
+        const code = document.querySelector(".shj-lang-html");
+        navigator.clipboard.writeText(code.innerText);
+
+        // var doc = new DOMParser().parseFromString(code, "text/html");
+        // const clipboardItem = new ClipboardItem({ "text/html": doc });
+        // navigator.clipboard.write([clipboardItem]);
+
+        console.log(" code copied to clipboard!");
+      });
+    </script>
+    <script>
+      document
+        .getElementById("imageToCopy")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch("fugu.png");
+            const blob = await response.blob();
+            console.info("Blob: ", blob);
+            const clipboardItem = new ClipboardItem({ "image/png": blob });
+            await navigator.clipboard.write([clipboardItem]);
+            alert("Image copied to clipboard!");
+          } catch (err) {
+            console.error("Failed to copy image: ", err);
+          }
+        });
+    </script>
+    <script>
+      document.querySelector("#readText").addEventListener("click", readText);
+      async function readText() {
+        try {
+          const text = await navigator.clipboard.readText();
+          console.log("Text from clipboard: ", text);
+        } catch (err) {
+          console.error("Failed to read text: ", err);
+        }
+      }
+    </script>
+  </body>
+</html>

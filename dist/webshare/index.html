@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Share API</title>
+  </head>
+  <body>
+    <h1>Web Share API</h1>
+
+    <button id="share-button">Share this page</button>
+    <p>
+      The Web Share API allows you to share text, links, and files to other
+      applications installed on the user's device.
+      <script>
+        const shareButton = document.getElementById("share-button");
+        shareButton.addEventListener("click", () => {
+          if (navigator.share) {
+            navigator
+              .share({
+                title: "Check out this website!",
+                text: "I found this amazing site you should see.",
+                url: "https://example.com",
+              })
+              .then(() => console.log("Content shared successfully"))
+              .catch((error) => console.error("Error sharing content:", error));
+          } else {
+            console.log("Web Share API not supported in this browser.");
+          }
+        });
+
+        const shareFilesButton = document.createElement("button");
+        shareFilesButton.textContent = "Share files";
+        document.body.appendChild(shareFilesButton);
+
+        shareFilesButton.addEventListener("click", async () => {
+          if (navigator.canShare) {
+            const file = new File(["Hello, world!"], "example.txt", {
+              type: "text/plain",
+            });
+
+            try {
+              await navigator.share({
+                files: [file],
+                title: "Share a file",
+                text: "Check out this file!",
+              });
+              console.log("File shared successfully");
+            } catch (error) {
+              console.error("Error sharing file:", error);
+            }
+          } else {
+            console.log("File sharing not supported in this browser.");
+          }
+        });
+      </script>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fullscreen API</title>
+  </head>
+  <body>
+    <h1>Fullscreen API</h1>
+    <p>
+      The Fullscreen API allows you to display an element in fullscreen mode,
+      covering the entire screen.
+    </p>
+    <button id="request-fullscreen">Request Fullscreen</button>
+    <button id="exit-fullscreen">Exit Fullscreen</button>
+
+    <pre>
+        <code class="shj-lang-html">
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>Fullscreen API</title>
+                </head>
+                <body>
+                    <!-- Your content here -->
+                </body>
+            </html>
+        </code>
+    </pre>
+
+    <script type="module">
+      const requestFullscreenButton =
+        document.getElementById("request-fullscreen");
+      const exitFullscreenButton = document.getElementById("exit-fullscreen");
+
+      requestFullscreenButton.addEventListener("click", () => {
+        document.documentElement.requestFullscreen();
+      });
+
+      exitFullscreenButton.addEventListener("click", () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        }
+      });
+    </script>
+
+    <video id="video" controls width="300">
+      <source src="dolphins-puferfish.mp4" type="video/mp4" controls />
+      Your browser does not support the video tag.
+    </video>
+    <button id="play-video-btn">Play Video</button>
+
+    <script>
+      const playVideoButton = document.getElementById("play-video-btn");
+
+      playVideoButton.addEventListener("click", () => {
+        if (video.paused) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          }
+          video.play();
+        }
+      });
+    </script>
+  </body>
+</html>

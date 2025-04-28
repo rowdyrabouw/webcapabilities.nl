@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="js/script.js"></script>
+  </head>
+  <body>
+    <button id="connect">Connect USB</button>
+
+    <button id="start-button">Connect HID</button>
+    <button id="stop-button">Disconnect HID</button>
+
+    <script>
+      document.getElementById("connect").addEventListener("click", () => {
+        // check if browser supports webusb
+        if ("usb" in navigator) {
+          console.log("WebUSB is supported");
+          navigator.usb
+            .requestDevice({ filters: [{ vendorId: 0x27b8 }] })
+            .then((device) => {
+              console.log(device.productName);
+              console.log(device.manufacturerName);
+              console.log(device.serialNumber);
+              console.log(device);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        } else {
+          console.log("WebUSB is not supported");
+        }
+      });
+    </script>
+  </body>
+</html>
