@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Bluetooth API</title>
+    <style>
+      :root {
+        --color-primary: rgb(232, 142, 70);
+        --color-secondary: rgb(231, 101, 63);
+      }
+      body {
+        background: var(--color-primary);
+        background: linear-gradient(
+          180deg,
+          rgba(135, 232, 110, 1) 0%,
+          rgb(2, 52, 48, 1) 100%
+        );
+        min-height: 100vh;
+        overflow: hidden;
+      }
+    </style>
+    <link rel="stylesheet" href="ps4.css" />
+
+    <script type="module" defer src="js/hid.js"></script>
+  </head>
+  <body>
+    <!--
+    <p><strong>macBook</strong></p>
+    <h1>Web Bluetooth API</h1>
+    -->
+    <br />
+    <br />
+    <button id="listen">Listen</button>
+    <div class="ps4">
+      <img src="ps4.png" alt="PS4" class="ps4-image" />
+      <div id="axe-left">
+        <div id="axe-left-outer"></div>
+        <div id="axe-left-inner"></div>
+      </div>
+      <div id="axe-right">
+        <div id="axe-right-outer"></div>
+        <div id="axe-right-inner"></div>
+      </div>
+      <div id="btn0-cross"></div>
+      <div id="btn1-circle"></div>
+      <div id="btn2-square"></div>
+      <div id="btn3-triangle"></div>
+      <div id="btn46-left-back">
+        <div id="btn46-left-back-top"></div>
+        <div id="btn46-left-back-middle"></div>
+        <div id="btn46-left-back-bottom"></div>
+      </div>
+      <div id="btn57-right-back">
+        <div id="btn57-right-back-top"></div>
+        <div id="btn57-right-back-middle"></div>
+        <div id="btn57-right-back-bottom"></div>
+      </div>
+      <div id="btn8"></div>
+      <div id="btn9"></div>
+      <div id="btn12"></div>
+      <div id="btn13"></div>
+      <div id="btn14"></div>
+      <div id="btn15"></div>
+      <div id="btn16-playstation"></div>
+      <div id="btn17-touchpad"></div>
+      <button id="ps4-connect">
+        <img src="playstation.svg" alt="PS4" class="ps4-connect" />
+      </button>
+    </div>
+  </body>
+</html>

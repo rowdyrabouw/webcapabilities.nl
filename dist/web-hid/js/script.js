@@ -7,15 +7,17 @@ document
   .getElementById("stop-button")
   .addEventListener("click", handleDisconnectClick);
 
+let device = null;
+
 async function handleConnectClick() {
-  let acolor = [255, 255, 0]; // purple
+  let acolor = [0, 255, 0]; // purple
   let device = await openDevice();
   await fadeToColor(device, acolor);
 }
 
 async function handleDisconnectClick() {
   let acolor = [0, 0, 0]; // off
-  let device = await openDevice();
+  device = await openDevice();
   if (!device) return;
   await fadeToColor(device, acolor);
   await device.close();
@@ -59,3 +61,39 @@ async function fadeToColor(device, [r, g, b]) {
     console.error("fadeToColor: failed:", error);
   }
 }
+
+const getHeartRate = async () => {
+  const device2 = await navigator.bluetooth.requestDevice({
+    filters: [
+      {
+        namePrefix: "Polar Sense",
+        manufacturerData: [{ companyIdentifier: 0x006b }],
+      },
+    ],
+    acceptAllDevices: false,
+    optionalServices: [0x180d, 0x180f],
+  });
+  const gattServer = await device2.gatt?.connect();
+  const heartRateService = await gattServer?.getPrimaryService(0x180d);
+  const heartRate = await heartRateService?.getCharacteristic(0x2a37);
+  await heartRate.startNotifications();
+  // btnHeart.classList.add("on");
+  // btnHeart.disabled = true;
+
+  heartRate.addEventListener("characteristicvaluechanged", async (e) => {
+    const hbpm = e.target.value.getUint8(1);
+    console.info("heartRate", hbpm);
+    // Tone.Transport.bpm.value = bpm;
+    document.querySelector("#heartrate").innerHTML = hbpm;
+    // TODO: transform this into blinks per minute
+    await fadeToColor(device, [255, 0, 0]);
+    setTimeout(async () => {
+      await fadeToColor(device, [0, 0, 0]);
+    }, 500);
+  });
+};
+
+const btnHeart = document.querySelector("#heart");
+btnHeart.addEventListener("click", () => {
+  getHeartRate();
+});
