@@ -16,7 +16,11 @@ ablyRealtimePromiseExample();
 // add event listerner to button
 const button = document.querySelector("#sendMessage");
 const message = document.querySelector("#messageInput");
+const name = document.querySelector("#nameInput");
 button.addEventListener("click", async () => {
   const channel = ably.channels.get("some-channel-name");
-  await channel.publish("hello-world-message", { message: message.value });
+  await channel.publish("hello-world-message", {
+    message: message.value,
+    name: name.value,
+  });
 });
