@@ -225,7 +225,7 @@ export class DualShock4 {
     }
   }
 
-  // Adapated from https://stackoverflow.com/questions/18638900/javascript-crc32
+  // Adapted from https://stackoverflow.com/questions/18638900/javascript-crc32
 
   crc32(str) {
     var crcTable = this.crcTable || (this.crcTable = this.makeCRCTable());
