@@ -70,21 +70,21 @@ document.getElementById("print").addEventListener("click", async () => {
   } catch (error) {
     console.error(error);
   }
-
-  function printAblyMessage(ablyMessage) {
-    console.log("Printing Ably message", ablyMessage);
-    const data = encoder
-      .initialize()
-      .text(ablyMessage.data.message)
-      .newline()
-      .text(ablyMessage.data.name)
-      .newline()
-      .encode();
-
-    /* Print the receipt */
-    receiptPrinter.print(data);
-  }
 });
+
+function printAblyMessage(ablyMessage) {
+  console.log("Printing Ably message", ablyMessage);
+  const data = encoder
+    .initialize()
+    .text(ablyMessage.data.message)
+    .newline()
+    .text(ablyMessage.data.name)
+    .newline()
+    .encode();
+
+  /* Print the receipt */
+  receiptPrinter.print(data);
+}
 
 (async () => {
   // console.log("Oh hai! 🖤");
