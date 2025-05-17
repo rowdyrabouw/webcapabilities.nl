@@ -3,29 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web USB API</title>
+    <title>Web Share API</title>
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/script.js" defer></script>
     <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
   <body>
     <header>
       <div class="menu-heading-wrapper">
-        <hamburger-menu current-page="web-usb"></hamburger-menu>
-        <h1>Web USB API</h1>
+        <hamburger-menu current-page="web-share"></hamburger-menu>
+        <h1>Web Share API</h1>
       </div>
-      <browser-support chrome edge chrome-mobile></browser-support>
+      <browser-support chrome edge safari chrome-mobile safari-mobile></browser-support>
     </header>
 
-        <button id="connect">Connect USB</button>
-
-        <div class="info-wrapper">
-          <img src="assets/img/netumscan.png" alt="" />
-          <div id="info"></div>
-        </div>
-      </body>
-    </html>
+    <button id="share-button">Share this page</button>
+    <p>The Web Share API allows you to share text, links, and files to other applications installed on the user's device.</p>
   </body>
 </html>

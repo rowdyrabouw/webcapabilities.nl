@@ -3,15 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Fugu: Possibilities with Web Capabilities</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
   <body>
-    <a href="clipboard">Clipboard API</a><br />
-    <a href="fullscreen">Fullscreen API</a><br />
-    <a href="picture-in-picture">Picture-in-Picture API</a><br />
-    <a href="webshare">Web Share API</a><br />
-    <a href="wakelock">Wakelock API</a><br />
-    <a href="web-usb">Web USB API</a><br />
-    <a href="web-hid">Web HID API</a><br />
+    <header>
+      <div class="menu-heading-wrapper">
+        <hamburger-menu current-page="home"></hamburger-menu>
+        <h1>Fugu</h1>
+      </div>
+      <browser-support chrome edge firefox safari chrome-mobile safari-mobile></browser-support>
+    </header>
+
+    <div class="hero-image">
+      <img src="assets/img/fugu.png" alt="Fugu" class="fugu" />
+    </div>
   </body>
 </html>

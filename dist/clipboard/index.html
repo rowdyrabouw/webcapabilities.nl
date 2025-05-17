@@ -4,94 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clipboard API</title>
-    <style>
-      #discount {
-        font-weight: bold;
-        color: #e74c3c;
-        text-decoration: underline;
-        cursor: pointer;
-      }
-    </style>
-    <script src="script.js" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@speed-highlight/core/dist/themes/dark.css"
-    />
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dark.css" />
+    <script type="module" src="assets/js/script.js" defer></script>
+    <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
   <body>
-    <p><strong>macBook</strong></p>
-    <h1>Clipboard API</h1>
+    <header>
+      <div class="menu-heading-wrapper">
+        <hamburger-menu current-page="clipboard"></hamburger-menu>
+        <h1>Clipboard API</h1>
+      </div>
+      <browser-support chrome edge firefox safari chrome-mobile safari-mobile></browser-support>
+    </header>
+
+    <div class="discount">
+      <p>Enjoy a delicious treat!<br />Get 20% off on all sushi orders for a limited time with code <span id="discount">FISH20</span>.<br />Don't miss out on this amazing offer!</p>
+    </div>
+
+    <div style="display: flex; justify-content: center">
+      <div style="position: relative; width: fit-content">
+        <code class="shj-lang-html" style="position: relative"></code>
+        <button id="code-button" type="button" style="position: absolute; top: 10px; right: 10px; width: 40px; cursor: pointer">
+          <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m384 336h-192c-8.8 0-16-7.2-16-16v-256c0-8.8 7.2-16 16-16h140.1l67.9 67.9v204.1c0 8.8-7.2 16-16 16zm-192 48h192c35.3 0 64-28.7 64-64v-204.1c0-12.7-5.1-24.9-14.1-33.9l-67.8-67.9c-9-9-21.2-14.1-33.9-14.1h-140.2c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64zm-128-256c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64h192c35.3 0 64-28.7 64-64v-32h-48v32c0 8.8-7.2 16-16 16h-192c-8.8 0-16-7.2-16-16v-256c0-8.8 7.2-16 16-16h32v-48z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
     <p>
-      Enjoy a delicious treat! Get 20% off on all sushi orders for a limited
-      time with code <span id="discount">FISH20</span>. Don't miss out on this
-      amazing offer!
+      <button id="readText" type="button">Read from Clipboard</button>
     </p>
-    <code class="shj-lang-html"> </code>
-    <button id="code-button" type="button">Copy to Clipboard</button>
-    <button id="readText" type="button">Read from Clipboard</button>
-
-    <img
-      id="imageToCopy"
-      src="fugu.png"
-      alt="Example Image"
-      style="cursor: pointer; width: 200px"
-    />
-
-    <script type="module">
-      const htmlCodeContainer = document.querySelector(".shj-lang-html");
-      const htmlCode = `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clipboard API</title>
-    <style>      
-        `;
-      htmlCodeContainer.textContent = htmlCode.trimLeft().trimRight();
-      import { highlightAll } from "https://unpkg.com/@speed-highlight/core/dist/index.js";
-      highlightAll();
-    </script>
-
-    <script>
-      const codeButton = document.querySelector("#code-button");
-      codeButton.addEventListener("click", () => {
-        const code = document.querySelector(".shj-lang-html");
-        navigator.clipboard.writeText(code.innerText);
-
-        // var doc = new DOMParser().parseFromString(code, "text/html");
-        // const clipboardItem = new ClipboardItem({ "text/html": doc });
-        // navigator.clipboard.write([clipboardItem]);
-
-        console.log(" code copied to clipboard!");
-      });
-    </script>
-    <script>
-      document
-        .getElementById("imageToCopy")
-        .addEventListener("click", async () => {
-          try {
-            const response = await fetch("fugu.png");
-            const blob = await response.blob();
-            console.info("Blob: ", blob);
-            const clipboardItem = new ClipboardItem({ "image/png": blob });
-            await navigator.clipboard.write([clipboardItem]);
-            alert("Image copied to clipboard!");
-          } catch (err) {
-            console.error("Failed to copy image: ", err);
-          }
-        });
-    </script>
-    <script>
-      document.querySelector("#readText").addEventListener("click", readText);
-      async function readText() {
-        try {
-          const text = await navigator.clipboard.readText();
-          console.log("Text from clipboard: ", text);
-        } catch (err) {
-          console.error("Failed to read text: ", err);
-        }
-      }
-    </script>
+    <img id="imageToCopy" src="assets/img/fugu.png" alt="Example Image" style="cursor: pointer; width: 200px" />
   </body>
 </html>

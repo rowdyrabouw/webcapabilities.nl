@@ -3,28 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web USB API</title>
+    <title>Web HID API</title>
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/script.js" defer></script>
     <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
   <body>
     <header>
       <div class="menu-heading-wrapper">
-        <hamburger-menu current-page="web-usb"></hamburger-menu>
-        <h1>Web USB API</h1>
+        <hamburger-menu current-page="web-hid-keyboard"></hamburger-menu>
+        <h1>Web HID API</h1>
       </div>
-      <browser-support chrome edge chrome-mobile></browser-support>
+      <browser-support chrome edge></browser-support>
     </header>
 
-        <button id="connect">Connect USB</button>
 
-        <div class="info-wrapper">
-          <img src="assets/img/netumscan.png" alt="" />
-          <div id="info"></div>
-        </div>
+        <button id="connect">Connect HID</button>
+        <button id="blink">Blink</button>
       </body>
     </html>
   </body>

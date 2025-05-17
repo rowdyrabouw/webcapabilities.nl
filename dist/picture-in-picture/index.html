@@ -4,32 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Picture-in-Picture API</title>
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script type="module" src="assets/js/script.js" defer></script>
+    <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
   <body>
-    <p><strong>macBook</strong></p>
-    <h1>Picture-in-Picture API</h1>
+    <header>
+      <div class="menu-heading-wrapper">
+        <hamburger-menu current-page="picture-in-picture"></hamburger-menu>
+        <h1>Picture-in-Picture API</h1>
+      </div>
+      <browser-support chrome edge safari chrome-mobile safari-mobile></browser-support>
+    </header>
+
+    <div id="pipContainer">
+      <div id="pipContent">
+        <h2>DocumentPictureInPicture</h2>
+        <p>The DocumentPictureInPicture interface allows you to create always-on-top window.</p>
+        <p>This is an experimental feature is currently only supported in Chromium based browsers.</p>
+      </div>
+    </div>
 
     <video id="video" controls width="300">
-      <source src="sushi.mp4" type="video/mp4" />
+      <source src="assets/video/sushi.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <button id="pipButton">Enable Picture-in-Picture</button>
-
-    <script>
-      const video = document.getElementById("video");
-      const pipButton = document.getElementById("pipButton");
-
-      pipButton.addEventListener("click", async () => {
-        if (document.pictureInPictureElement) {
-          await document.exitPictureInPicture();
-        } else {
-          try {
-            await video.requestPictureInPicture();
-          } catch (error) {
-            console.error("Error enabling Picture-in-Picture:", error);
-          }
-        }
-      });
-    </script>
+    <button id="pipButton">toggle Picture-in-Picture</button>
+    <button id="pipContentButton">Experimental Picture-in-Picture</button>
   </body>
 </html>

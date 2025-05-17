@@ -1,0 +1,10 @@
+img {
+  height: 400px;
+}
+.info-wrapper {
+  display: none;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}

@@ -3,78 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web USB Printer</title>
+    <title>Web USB API</title>
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script type="module" src="assets/js/script.js" defer></script>
+    <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
   <body>
-    <button id="connect">Connect USB</button>
-    <button id="print">Print</button>
+    <header>
+      <div class="menu-heading-wrapper">
+        <hamburger-menu current-page="web-usb-printer"></hamburger-menu>
+        <h1>Web USB API</h1>
+      </div>
+      <browser-support chrome edge chrome-mobile></browser-support>
+    </header>
 
-    <script type="module">
-      import WebUSBReceiptPrinter from "./webusb-receipt-printer.esm.js";
-      import ReceiptPrinterEncoder from "./receipt-printer-encoder.esm.js";
 
-      const receiptPrinter = new WebUSBReceiptPrinter();
-      let printerLanguage;
-      let printerCodepageMapping;
-      let encoder;
-
-      receiptPrinter.addEventListener("connected", (device) => {
-        console.log(
-          `Connected to ${device.manufacturerName} ${device.productName} (#${device.serialNumber})`
-        );
-
-        console.log("Device info:");
-        console.log(device);
-        printerLanguage = device.language;
-        printerCodepageMapping = device.codepageMapping;
-
-        encoder = new ReceiptPrinterEncoder({
-          //   printerModel: "pos-8360",
-          language: printerLanguage,
-          //   codepageMapping: printerCodepageMapping,
-          columns: 32,
-        });
-        // console.log(ReceiptPrinterEncoder.printerModels);
-        /* Store device for reconnecting */
-        // lastUsedDevice = device;
-      });
-
-      document.getElementById("connect").addEventListener("click", async () => {
-        // check if browser supports webusb
-        if ("usb" in navigator) {
-          console.log("WebUSB is supported");
-          try {
-            await receiptPrinter.connect();
-            //     const device = navigator.usb.requestDevice({
-            //       filters: [{ vendorId: 0x0416 }],
-            //     });
-            //     receiptPrinter.connect(device);
-            //     console.log("Connected to printer");
-            //     console.log(device.productName);
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.log("WebUSB is not supported");
-        }
-      });
-
-      document.getElementById("print").addEventListener("click", async () => {
-        try {
-          let data = encoder
-            .initialize()
-            .text("Ola lief!")
-            .qrcode("Rowdy Rabouw")
-            .newline()
-            .encode();
-
-          /* Print the receipt */
-
-          receiptPrinter.print(data);
-        } catch (error) {
-          console.error(error);
-        }
-      });
-    </script>
+        <div>
+          <h2>Add QR code</h2>
+          <h2>Add PiP with live stream</h2>
+          <h2>Reveal QR on button click</h2>
+          <input type="text" id="messageInput" placeholder="Type a message to send to Ably" value="What kind of computer sings the best?... A Dell." />
+          <input type="text" id="nameInput" placeholder="Channel name" value="Rowdy Rabouw" />
+          <button id="sendMessage">Send Message</button>
+        </div>
+      </body>
+    </html>
   </body>
 </html>

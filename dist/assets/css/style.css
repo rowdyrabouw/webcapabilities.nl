@@ -1,0 +1,97 @@
+:root {
+  --color-primary: rgb(232, 142, 70);
+  --color-secondary: rgb(231, 101, 63);
+}
+
+/* kumbh-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Kumbh Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/kumbh-sans-v22-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* kumbh-sans-900 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Kumbh Sans";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../fonts/kumbh-sans-v22-latin-900.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+body {
+  background: var(--color-primary);
+  background: linear-gradient(180deg, rgba(135, 232, 110, 1) 0%, rgb(2, 52, 48, 1) 100%);
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: rgb(1, 53, 47);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 80px;
+
+  .menu-heading-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+h1 {
+  font-family: "Kumbh Sans", sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 4rem;
+  color: rgb(1, 53, 47);
+  -webkit-text-fill-color: rgb(1, 53, 47); /* Will override color (regardless of order) */
+  -webkit-text-stroke: 3px rgb(255, 255, 255);
+}
+
+.browser-support {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-inline-end: 16px;
+  gap: 20px;
+  svg {
+    width: 50px;
+    height: 50px;
+    fill: rgb(255, 255, 255);
+    position: relative;
+    .not-supported {
+      fill: rgba(255, 255, 255, 0.6);
+    }
+  }
+  div.mobile {
+    position: relative;
+  }
+  svg.mobile {
+    position: absolute;
+    width: 20px;
+    height: auto;
+    bottom: -8px;
+    right: -12px;
+    background-color: rgb(130, 225, 108);
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid rgb(255, 255, 255);
+  }
+}
+
+.hero-image {
+  margin-block-start: 32px;
+  display: flex;
+  justify-content: center;
+  img {
+    height: 600px;
+  }
+}
