@@ -6,6 +6,7 @@
     <title>Web HID API</title>
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/script.js" defer></script>
     <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
@@ -18,10 +19,10 @@
       <browser-support chrome edge></browser-support>
     </header>
 
+    <button id="stream">Stream</button>
+    <button id="connect">Connect HID</button>
+    <button id="blink">Blink</button>
 
-        <button id="connect">Connect HID</button>
-        <button id="blink">Blink</button>
-      </body>
-    </html>
+    <video id="videostreamId" controls></video>
   </body>
 </html>

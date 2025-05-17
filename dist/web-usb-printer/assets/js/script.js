@@ -1,4 +1,6 @@
-console.log("Oh hai! 🖤");
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+  document.body.classList.add("local");
+}
 
 const optionalClientId = "optionalClientId"; // When not provided in authUrl, a default will be used.
 const ably = new Ably.Realtime({

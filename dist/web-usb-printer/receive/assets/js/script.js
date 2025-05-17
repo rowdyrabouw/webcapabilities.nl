@@ -1,3 +1,7 @@
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+  document.body.classList.add("local");
+}
+
 import WebUSBReceiptPrinter from "./webusb-receipt-printer.esm.js";
 import ReceiptPrinterEncoder from "./receipt-printer-encoder.esm.js";
 
@@ -7,9 +11,7 @@ let printerCodepageMapping;
 let encoder;
 
 receiptPrinter.addEventListener("connected", (device) => {
-  console.log(
-    `Connected to ${device.manufacturerName} ${device.productName} (#${device.serialNumber})`
-  );
+  console.log(`Connected to ${device.manufacturerName} ${device.productName} (#${device.serialNumber})`);
 
   console.log("Device info:");
   console.log(device);
@@ -56,13 +58,7 @@ document.getElementById("print").addEventListener("click", async () => {
     createdAt: 1746679646266,
   };
   try {
-    let data = encoder
-      .initialize()
-      .text(ablyMessage.data.message)
-      .newline()
-      .text(ablyMessage.data.name)
-      .newline()
-      .encode();
+    let data = encoder.initialize().text(ablyMessage.data.message).newline().text(ablyMessage.data.name).newline().encode();
 
     /* Print the receipt */
 
@@ -74,13 +70,7 @@ document.getElementById("print").addEventListener("click", async () => {
 
 function printAblyMessage(ablyMessage) {
   console.log("Printing Ably message", ablyMessage);
-  const data = encoder
-    .initialize()
-    .text(ablyMessage.data.message)
-    .newline()
-    .text(ablyMessage.data.name)
-    .newline()
-    .encode();
+  const data = encoder.initialize().text(ablyMessage.data.message).newline().text(ablyMessage.data.name).newline().encode();
 
   /* Print the receipt */
   receiptPrinter.print(data);
@@ -97,8 +87,7 @@ function printAblyMessage(ablyMessage) {
 
   await channel.subscribe((msg) => {
     console.log("Ably message received", msg);
-    document.getElementById("response").innerHTML +=
-      "<br />" + JSON.stringify(msg);
+    document.getElementById("response").innerHTML += "<br />" + JSON.stringify(msg);
     printAblyMessage(msg);
   });
 })();

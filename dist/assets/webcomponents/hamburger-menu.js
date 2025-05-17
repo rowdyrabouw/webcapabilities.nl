@@ -67,10 +67,10 @@ class HamburgerMenu extends HTMLElement {
               <li><a id="picture-in-picture" href="/picture-in-picture">Picture-in-Picture API</a></li>
               <li><a id="screen-wake-lock" href="/screen-wake-lock">Screen Wake Lock API</a></li>
               <li><a id="web-share" href="/web-share">Web Share API</a></li>
-              <li><a id="web-usb" href="/web-usb">WebUSB API (info)</a></li>
-              <li><a id="web-usb-printer" href="/web-usb-printer">WebUSB API (demo)</a></li>
-              <li><a id="web-hid-keyboard" href="/web-hid-keyboard">WebHID API (keyboard)</a></li>
-              <li><a id="web-hid-bluetooth" href="/web-hid-bluetooth">WebHID API (bluetooth)</a></li>
+              <li><a id="web-usb" href="/web-usb">Web USB API</a></li>
+              <li><a id="web-usb-printer" href="/web-usb-printer">Web USB API (Ably)</a></li>
+              <li><a id="web-hid-keyboard" href="/web-hid-keyboard">Web HID API</a></li>
+              <li><a id="web-hid-bluetooth" href="/web-hid-bluetooth">Web HID + Bluetooth API</a></li>
             </ul>
           </div>
         </nav>

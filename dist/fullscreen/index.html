@@ -23,8 +23,24 @@
 
     <video id="video" controls width="300">
       <source src="assets/video/dolphins-puferfish.mp4" type="video/mp4" controls />
-      Your browser does not support the video tag.
     </video>
     <button id="play-video-btn">Play Video</button>
+
+    <div id="fullscreen-container" style="background-color: aqua; display: none">
+      <p>Hello world!</p>
+    </div>
+    <button id="fullscreen-btn">Content</button>
+    <script>
+      const fc = document.getElementById("fullscreen-container");
+      const fcBtn = document.getElementById("fullscreen-btn");
+      fcBtn.addEventListener("click", () => {
+        fc.style.display = "block";
+        fc.requestFullscreen();
+      });
+      window.addEventListener("load", (event) => {
+        console.log("page is fully loaded");
+        video.requestFullscreen();
+      });
+    </script>
   </body>
 </html>

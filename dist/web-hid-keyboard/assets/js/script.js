@@ -23,3 +23,14 @@ document.querySelector("#blink").addEventListener("click", async () => {
     console.log(`The "${device.productName}" HID device is blinking...`);
   }
 });
+
+const stream = document.getElementById("stream");
+const video = document.getElementById("videostreamId");
+
+stream.addEventListener("click", async () => {
+  await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+    window.localStream = stream;
+    video.srcObject = stream;
+    video.play();
+  });
+});
