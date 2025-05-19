@@ -1,0 +1,21 @@
+video {
+  border: 2px solid rgb(1, 53, 47);
+}
+
+#fullscreen-container {
+  background: rgb(236, 225, 81);
+  background: linear-gradient(180deg, rgb(236, 225, 81) 0%, rgb(232, 99, 63) 100%);
+  display: none;
+}
+
+.fullscreen-content {
+  display: flex;
+  flex-direction: column;
+  margin: 64px;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  img {
+    width: 500px;
+  }
+}

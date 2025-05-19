@@ -6,6 +6,7 @@
     <title>Fullscreen API</title>
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/script.js" defer></script>
     <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
@@ -18,29 +19,22 @@
       <browser-support chrome edge firefox safari chrome-mobile safari-mobile></browser-support>
     </header>
 
-    <button id="request-fullscreen">Request Fullscreen</button>
-    <button id="exit-fullscreen">Exit Fullscreen</button>
-
-    <video id="video" controls width="300">
-      <source src="assets/video/dolphins-puferfish.mp4" type="video/mp4" controls />
-    </video>
-    <button id="play-video-btn">Play Video</button>
-
-    <div id="fullscreen-container" style="background-color: aqua; display: none">
-      <p>Hello world!</p>
+    <div style="display: flex; justify-content: center; margin-block-start: 64px; gap: 64px">
+      <div style="display: flex; flex-direction: column; gap: 32px">
+        <button id="toggle-fullscreen">Toggle</button>
+        <button id="play-video-btn">Play video</button>
+        <button id="fullscreen-btn">Hidden content</button>
+      </div>
+      <video id="video" controls width="300">
+        <source src="assets/video/dolphins-puferfish.mp4" type="video/mp4" controls />
+      </video>
     </div>
-    <button id="fullscreen-btn">Content</button>
-    <script>
-      const fc = document.getElementById("fullscreen-container");
-      const fcBtn = document.getElementById("fullscreen-btn");
-      fcBtn.addEventListener("click", () => {
-        fc.style.display = "block";
-        fc.requestFullscreen();
-      });
-      window.addEventListener("load", (event) => {
-        console.log("page is fully loaded");
-        video.requestFullscreen();
-      });
-    </script>
+    <div id="fullscreen-container">
+      <div class="fullscreen-content">
+        <h1>Fullscreen API</h1>
+        <p>It's also possible to hide content and only show it in fullscreen mode.</p>
+        <p><img src="assets/img/fugu.png" alt="" /></p>
+      </div>
+    </div>
   </body>
 </html>
