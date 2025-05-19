@@ -1,3 +1,18 @@
-:picture-in-picture {
+#video2:picture-in-picture {
   display: none;
+}
+
+#pipContent p {
+  margin: 0 0 16px 0;
+}
+
+.wrapper {
+  display: flex;
+  margin: 64px;
+  gap: 32px;
+}
+
+div:has(video) {
+  min-width: 350px;
+  text-align: center;
 }

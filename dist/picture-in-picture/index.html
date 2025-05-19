@@ -19,19 +19,29 @@
       <browser-support chrome edge safari chrome-mobile safari-mobile></browser-support>
     </header>
 
-    <div id="pipContainer">
-      <div id="pipContent">
-        <h2>DocumentPictureInPicture</h2>
-        <p>The DocumentPictureInPicture interface allows you to create always-on-top window.</p>
-        <p>This is an experimental feature is currently only supported in Chromium based browsers.</p>
+    <div class="wrapper">
+      <div>
+        <video id="video1" controls width="300">
+          <source src="assets/video/dolphins-puferfish.mp4" type="video/mp4" />
+        </video>
+        <button id="pipVideoButton1">Toggle video</button>
+      </div>
+      <div>
+        <video id="video2" controls width="300">
+          <source src="assets/video/dolphins-puferfish.mp4" type="video/mp4" />
+        </video>
+        <button id="pipVideoButton2">Toggle video</button>
+      </div>
+      <div>
+        <div id="pipContainer">
+          <div id="pipContent">
+            <h2>DocumentPictureInPicture</h2>
+            <p>The DocumentPictureInPicture interface allows you to create always-on-top window.</p>
+            <p>This is an experimental feature is currently only supported in Chromium based browsers.</p>
+          </div>
+        </div>
+        <button id="pipContentButton">Experimental Picture-in-Picture</button>
       </div>
     </div>
-
-    <video id="video" controls width="300">
-      <source src="assets/video/sushi.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-    <button id="pipButton">toggle Picture-in-Picture</button>
-    <button id="pipContentButton">Experimental Picture-in-Picture</button>
   </body>
 </html>
