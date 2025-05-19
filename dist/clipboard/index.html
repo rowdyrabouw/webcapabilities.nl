@@ -20,25 +20,46 @@
       <browser-support chrome edge firefox safari chrome-mobile safari-mobile></browser-support>
     </header>
 
-    <div class="discount">
-      <p>Enjoy a delicious treat!<br />Get 20% off on all sushi orders for a limited time with code <span id="discount">FISH20</span>.<br />Don't miss out on this amazing offer!</p>
-    </div>
+    <div class="menu-wrapper">
+      <nav aria-label="examples">
+        <ul>
+          <li><button id="example1btn">1</button></li>
+          <li><button id="example2btn">2</button></li>
+          <li><button id="example3btn">3</button></li>
+          <li><button id="example4btn">4</button></li>
+        </ul>
+      </nav>
+      <div>
+        <div class="discount" id="example1">
+          <p>
+            Enjoy a delicious treat!<br />Get 20% off on all sushi orders for a limited time with code <button id="discount" popovertarget="discount-confirmation" popovertargetaction="show">FISH20</button>.<br />Don't miss out on this amazing offer!
+          </p>
+        </div>
+        <p id="discount-confirmation" popover>Your 20% discount code is copied!</p>
 
-    <div style="display: flex; justify-content: center">
-      <div style="position: relative; width: fit-content">
-        <code class="shj-lang-html" style="position: relative"></code>
-        <button id="code-button" type="button" style="position: absolute; top: 10px; right: 10px; width: 40px; cursor: pointer">
-          <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="m384 336h-192c-8.8 0-16-7.2-16-16v-256c0-8.8 7.2-16 16-16h140.1l67.9 67.9v204.1c0 8.8-7.2 16-16 16zm-192 48h192c35.3 0 64-28.7 64-64v-204.1c0-12.7-5.1-24.9-14.1-33.9l-67.8-67.9c-9-9-21.2-14.1-33.9-14.1h-140.2c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64zm-128-256c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64h192c35.3 0 64-28.7 64-64v-32h-48v32c0 8.8-7.2 16-16 16h-192c-8.8 0-16-7.2-16-16v-256c0-8.8 7.2-16 16-16h32v-48z"
-            />
-          </svg>
-        </button>
+        <div id="example2">
+          <code class="shj-lang-html"></code>
+          <button id="code-button" type="button">
+            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m384 336h-192c-8.8 0-16-7.2-16-16v-256c0-8.8 7.2-16 16-16h140.1l67.9 67.9v204.1c0 8.8-7.2 16-16 16zm-192 48h192c35.3 0 64-28.7 64-64v-204.1c0-12.7-5.1-24.9-14.1-33.9l-67.8-67.9c-9-9-21.2-14.1-33.9-14.1h-140.2c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64zm-128-256c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64h192c35.3 0 64-28.7 64-64v-32h-48v32c0 8.8-7.2 16-16 16h-192c-8.8 0-16-7.2-16-16v-256c0-8.8 7.2-16 16-16h32v-48z"
+              />
+            </svg>
+          </button>
+          <div aria-atomic="true" aria-live="polite">
+            <span id="code-notification">HTML code copied to clipboard</span>
+          </div>
+        </div>
+
+        <div id="example3">
+          <textarea id="textToPaste"></textarea><br />
+          <button id="readText" type="button">Read from Clipboard</button>
+        </div>
+
+        <div id="example4">
+          <img id="imageToCopy" src="assets/img/fugu.png" alt="Example Image" />
+        </div>
       </div>
     </div>
-    <p>
-      <button id="readText" type="button">Read from Clipboard</button>
-    </p>
-    <img id="imageToCopy" src="assets/img/fugu.png" alt="Example Image" style="cursor: pointer; width: 200px" />
   </body>
 </html>

@@ -21,7 +21,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   font-family: "Kumbh Sans", sans-serif;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 1.5rem;
   color: rgb(1, 53, 47);
 }
@@ -29,6 +29,22 @@ body {
 body.local {
   background: var(--color-secondary);
   background: linear-gradient(180deg, rgb(254, 150, 141) 0%, rgb(181, 24, 0) 100%);
+}
+
+button {
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  background-color: rgb(1, 53, 47);
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid rgb(255, 255, 255);
+  &:hover {
+    color: rgb(1, 53, 47);
+    background-color: rgb(135, 232, 110);
+  }
 }
 
 header {
@@ -47,7 +63,6 @@ header {
 }
 
 h1 {
-  font-family: "Kumbh Sans", sans-serif;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 4rem;
@@ -93,5 +108,27 @@ h1 {
   justify-content: center;
   img {
     height: 600px;
+  }
+}
+
+.menu-wrapper {
+  display: flex;
+  gap: 32px;
+  margin-block-start: 32px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-inline-start: 16px;
+    margin-block-end: 16px;
+    button {
+      width: 50px;
+      height: 50px;
+      padding: 0;
+    }
   }
 }

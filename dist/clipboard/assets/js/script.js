@@ -16,26 +16,28 @@ const discount = document.querySelector("#discount");
 discount.addEventListener("click", async () => {
   const discountAmount = document.querySelector("#discount").innerText;
   await navigator.clipboard.writeText(discountAmount);
-  alert("Text copied to clipboard!");
+  console.info("20% discount code is copied to clipboard!");
 });
 
 const codeButton = document.querySelector("#code-button");
+const codeNotification = document.querySelector("#code-notification");
 
 codeButton.addEventListener("click", () => {
   const code = document.querySelector(".shj-lang-html");
   navigator.clipboard.writeText(code.innerText);
-  console.log(" code copied to clipboard!");
+  codeNotification.classList.add("active");
+  console.info("HTML code copied to clipboard!");
 });
 
-document.getElementById("imageToCopy").addEventListener("click", async () => {
+const image = document.querySelector("#imageToCopy");
+image.addEventListener("click", async () => {
   try {
     const response = await fetch("assets/img/fugu.png");
     const blob = await response.blob();
-    console.info("Blob: ", blob);
-    console.info("Blob: ", typeof blob);
     const clipboardItem = new ClipboardItem({ "image/png": blob });
     await navigator.clipboard.write([clipboardItem]);
-    alert("Image copied to clipboard!");
+    image.classList.add("active");
+    console.info("Image copied to clipboard!");
   } catch (err) {
     console.error("Failed to copy image: ", err);
   }
@@ -45,8 +47,35 @@ document.querySelector("#readText").addEventListener("click", readText);
 async function readText() {
   try {
     const text = await navigator.clipboard.readText();
+    const textArea = document.querySelector("#textToPaste");
+    textArea.value = text;
     console.log("Text from clipboard: ", text);
   } catch (err) {
     console.error("Failed to read text: ", err);
   }
 }
+
+document.querySelector("#example1btn").addEventListener("click", () => {
+  document.querySelector("#example1").classList.add("active");
+  document.querySelector("#example2").classList.remove("active");
+  document.querySelector("#example3").classList.remove("active");
+  document.querySelector("#example4").classList.remove("active");
+});
+document.querySelector("#example2btn").addEventListener("click", () => {
+  document.querySelector("#example1").classList.remove("active");
+  document.querySelector("#example2").classList.add("active");
+  document.querySelector("#example3").classList.remove("active");
+  document.querySelector("#example4").classList.remove("active");
+});
+document.querySelector("#example3btn").addEventListener("click", () => {
+  document.querySelector("#example1").classList.remove("active");
+  document.querySelector("#example2").classList.remove("active");
+  document.querySelector("#example3").classList.add("active");
+  document.querySelector("#example4").classList.remove("active");
+});
+document.querySelector("#example4btn").addEventListener("click", () => {
+  document.querySelector("#example1").classList.remove("active");
+  document.querySelector("#example2").classList.remove("active");
+  document.querySelector("#example3").classList.remove("active");
+  document.querySelector("#example4").classList.add("active");
+});
