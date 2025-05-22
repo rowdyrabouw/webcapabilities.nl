@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web HID API + Web Bluetooth API</title>
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/parrot.js"></script>
+    <script src="assets/js/gamepad.js"></script>
+    <script type="module" src="../assets/webcomponents/index.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="menu-heading-wrapper">
+        <hamburger-menu current-page="gamepad-bluetooth"></hamburger-menu>
+        <h1>Gamepad + Bluetooth API</h1>
+      </div>
+      <browser-support chrome edge></browser-support>
+    </header>
+
+    <div class="ps4">
+      <img src="assets/img/ps4.png" alt="PS4" class="ps4-image" />
+      <div id="drone-connect-wrapper">
+        <button id="drone-connect">
+          <img src="assets/img/drone.svg" alt="Drone" />
+        </button>
+        <div id="battery">
+          <img src="assets/img/battery.svg" />
+          <span id="batteryLevel"></span>
+        </div>
+      </div>
+      <div id="leftStick">
+        <div id="leftStick-outer"></div>
+        <div id="leftStick-inner"></div>
+      </div>
+      <div id="rightStick">
+        <div id="rightStick-outer"></div>
+        <div id="rightStick-inner"></div>
+      </div>
+      <div id="cross"></div>
+      <div id="circle"></div>
+      <div id="square"></div>
+      <div id="triangle"></div>
+      <div id="l12">
+        <div id="l12-top"></div>
+        <div id="l12-middle"></div>
+        <div id="l12-bottom"></div>
+      </div>
+      <div id="r12">
+        <div id="r12-top"></div>
+        <div id="r12-middle"></div>
+        <div id="r12-bottom"></div>
+      </div>
+      <div id="share"></div>
+      <div id="options"></div>
+      <div id="dPadUp"></div>
+      <div id="dPadDown"></div>
+      <div id="dPadLeft"></div>
+      <div id="dPadRight"></div>
+      <div id="playstation"></div>
+      <div id="touchpad"></div>
+    </div>
+
+    <script type="module">
+      window.drone = ParrotDrone();
+      let isDroneReady = false;
+
+      document.querySelector("#drone-connect").addEventListener("click", async () => {
+        document.querySelector("#drone-connect-wrapper").style.background = "rgb(232, 142, 70)";
+        document.querySelector("#drone-connect-wrapper").classList.add("loading");
+
+        drone
+          .connect()
+          .then(() => {
+            console.info("connected");
+            document.querySelector("#drone-connect-wrapper").classList.remove("loading");
+            document.querySelector("#drone-connect").classList.add("hide");
+            document.querySelector("#battery").classList.add("connected");
+            isDroneReady = true;
+          })
+          .catch(() => {
+            console.error("error: not connected");
+            document.querySelector("#drone-connect-wrapper").classList.remove("loading");
+            document.querySelector("#drone-connect-wrapper").style.background = "rgb(231, 47, 65)";
+          });
+      });
+
+      const cross = document.querySelector("#cross");
+      const square = document.querySelector("#square");
+      const circle = document.querySelector("#circle");
+      const triangle = document.querySelector("#triangle");
+      const dPadUp = document.querySelector("#dPadUp");
+      const dPadDown = document.querySelector("#dPadDown");
+      const leftStick = document.querySelector("#leftStick");
+      const share = document.querySelector("#share");
+      const options = document.querySelector("#options");
+      const playstation = document.querySelector("#playstation");
+
+      const { GamepadListener } = gamepad;
+      const listener = new GamepadListener({
+        analog: false,
+        deadZone: 0.3,
+      });
+
+      listener.on("gamepad:connected", (event) => {
+        const {
+          index, // Gamepad index: Number [0-3].
+          gamepad, // Native Gamepad object.
+        } = event.detail;
+        console.info("Gamepad connected", event.detail);
+        playstation.classList.add("connected");
+      });
+
+      listener.on("gamepad:button", (event) => {
+        const { button, pressed } = event.detail;
+        console.info("Gamepad button", event.detail);
+        console.info("isDroneReady", isDroneReady);
+        switch (button) {
+          case 0:
+            cross.classList.toggle("pressed");
+            console.info("land");
+            isDroneReady ? drone.land() : null;
+            break;
+          case 1:
+            circle.classList.toggle("pressed");
+            console.info("emergency cut off");
+            isDroneReady ? drone.emergencyCutOff() : null;
+            break;
+          case 2:
+            square.classList.toggle("pressed");
+            console.info("flip");
+            isDroneReady ? drone.flip() : null;
+            break;
+          case 3:
+            triangle.classList.toggle("pressed");
+            console.info("take off");
+            isDroneReady ? drone.takeOff() : null;
+            break;
+          case 8:
+            // connect gamepad
+            console.info("connect gamepad");
+            break;
+          case 12:
+            dPadUp.classList.toggle("pressed");
+            console.info("move up");
+            isDroneReady ? drone.moveUp() : null;
+            break;
+          case 13:
+            dPadDown.classList.toggle("pressed");
+            console.info("mvove down");
+            isDroneReady ? drone.moveDown() : null;
+            break;
+          case 17:
+            options.classList.toggle("pressed");
+            // connect bluetooth
+            console.info("connect bluetooth");
+            document.querySelector("#drone-connect").click();
+            break;
+        }
+      });
+
+      listener.on("gamepad:axis", (event) => {
+        const { axis, value } = event.detail;
+        console.info("Gamepad axis", event.detail);
+        if (axis === 1) {
+          leftStick.classList.toggle("touched");
+          switch (value) {
+            case -1:
+              // forward
+              console.info("forwards");
+              isDroneReady ? drone.moveForwards() : null;
+              break;
+            case 1:
+              // backward
+              console.info("backwards");
+              isDroneReady ? drone.moveBackwards() : null;
+              break;
+          }
+        }
+        if (axis === 2) {
+          rightStick.classList.toggle("touched");
+          switch (value) {
+            case -1:
+              // left
+              console.info("left");
+              isDroneReady ? drone.moveLeft() : null;
+              break;
+            case 1:
+              // right
+              console.info("right");
+              isDroneReady ? drone.moveRight() : null;
+              break;
+          }
+        }
+      });
+
+      listener.start();
+    </script>
+  </body>
+</html>

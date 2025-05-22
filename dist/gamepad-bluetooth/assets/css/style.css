@@ -1,11 +1,19 @@
+:root {
+  --color-primary: rgb(232, 142, 70);
+  --color-secondary: rgb(231, 101, 63);
+}
+
 .ps4 {
-  display: none;
+  display: flex;
   justify-content: center;
   position: relative;
+  margin-block-start: 64px;
 }
+
 .ps4-image {
   z-index: 1;
 }
+
 #leftStick,
 #rightStick,
 #cross,
@@ -16,11 +24,11 @@
 #r12,
 #share,
 #options,
+#playstation,
 #dPadUp,
 #dPadDown,
 #dPadLeft,
 #dPadRight,
-#playstation,
 #touchpad {
   display: none;
 }
@@ -201,13 +209,13 @@
   left: 395px;
 }
 #playstation {
-  width: 82px;
-  height: 82px;
+  width: 90px;
+  height: 90px;
   border-radius: 90%;
   background-color: var(--color-primary);
   position: absolute;
-  top: 385px;
-  left: 707px;
+  top: 380px;
+  left: 705px;
 }
 #touchpad {
   width: 387px;
@@ -218,30 +226,15 @@
   top: 44px;
   left: 554px;
 }
-#ps4-connect {
-  margin: 40px;
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  border-radius: 90%;
-  border: 1px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  z-index: 2;
-}
-#ps4-connect:hover {
-  background-color: var(--color-secondary);
-}
-#ps4-connect:active {
-  background-color: var(--color-primary);
-}
+
+.connected,
 .pressed,
 .touched {
   display: block !important;
+}
+
+.hide {
+  display: none !important;
 }
 
 .loading {
@@ -259,28 +252,44 @@
   }
 }
 
-#drone-connect {
-  margin: 140px;
+#drone-connect-wrapper {
   position: absolute;
-  width: 90px;
-  height: 90px;
+  top: 40px;
+  width: 404px;
+  height: 240px;
+  border-radius: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(20, 20, 20);
+}
+
+#drone-connect {
+  width: 200px;
+  height: 200px;
+  background-color: transparent;
   border-radius: 90%;
   border: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   z-index: 2;
   & img {
-    max-width: 80%;
-    filter: invert(1);
+    max-width: 100%;
   }
 }
-#ps4-connect:hover {
-  background-color: var(--color-secondary);
+
+#battery {
+  display: none;
+  position: relative;
+  width: 200px;
+  & img {
+    max-width: 100%;
+  }
 }
-#ps4-connect:active {
-  background-color: var(--color-primary);
+
+#batteryLevel {
+  font-weight: 900;
+  font-size: 3rem;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  top: 60px;
+  left: 50px;
 }
