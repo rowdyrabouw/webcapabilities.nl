@@ -1,0 +1,277 @@
+:root {
+  --color-primary: rgb(232, 142, 70);
+  --color-secondary: rgb(231, 101, 63);
+}
+
+div:has(#ps4-connect) {
+  display: flex;
+  justify-content: center;
+  margin-block-start: 64px;
+}
+
+.ps4 {
+  display: none;
+  justify-content: center;
+  position: relative;
+}
+.ps4-image {
+  z-index: 1;
+}
+#leftStick,
+#rightStick,
+#cross,
+#circle,
+#square,
+#triangle,
+#l12,
+#r12,
+#share,
+#options,
+#dPadUp,
+#dPadDown,
+#dPadLeft,
+#dPadRight,
+#touchpad {
+  display: none;
+}
+#leftStick-inner {
+  width: 84px;
+  height: 84px;
+  border-radius: 90%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 353px;
+  left: 523px;
+}
+#leftStick-outer {
+  width: 143px;
+  height: 143px;
+  border-radius: 90%;
+  background-color: var(--color-secondary);
+  position: absolute;
+  top: 325px;
+  left: 494px;
+}
+#rightStick-inner {
+  width: 84px;
+  height: 84px;
+  border-radius: 90%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 353px;
+  left: 890px;
+}
+#rightStick-outer {
+  width: 143px;
+  height: 143px;
+  border-radius: 90%;
+  background-color: var(--color-secondary);
+  position: absolute;
+  top: 325px;
+  left: 860px;
+}
+#cross {
+  width: 80px;
+  height: 80px;
+  border-radius: 90%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 266px;
+  left: 1078px;
+}
+#circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 90%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 188px;
+  left: 1156px;
+}
+#square {
+  width: 80px;
+  height: 80px;
+  border-radius: 90%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 188px;
+  left: 1000px;
+}
+#triangle {
+  width: 80px;
+  height: 80px;
+  border-radius: 90%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 110px;
+  left: 1078px;
+}
+#l12-top {
+  width: 110px;
+  height: 30px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 8px;
+  left: 334px;
+}
+#l12-middle {
+  width: 120px;
+  height: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 15px;
+  left: 328px;
+}
+#l12-bottom {
+  width: 160px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 18px;
+  left: 308px;
+}
+#r12-top {
+  width: 110px;
+  height: 30px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 8px;
+  left: 1056px;
+}
+#r12-middle {
+  width: 120px;
+  height: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 15px;
+  left: 1050px;
+}
+#r12-bottom {
+  width: 160px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 18px;
+  left: 1030px;
+}
+#share {
+  width: 40px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 85px;
+  left: 502px;
+}
+#options {
+  width: 40px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 85px;
+  left: 955px;
+}
+#dPadUp {
+  width: 80px;
+  height: 100px;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 110px;
+  left: 340px;
+}
+#dPadDown {
+  width: 80px;
+  height: 100px;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 243px;
+  left: 340px;
+}
+#dPadLeft {
+  width: 100px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 186px;
+  left: 265px;
+}
+#dPadRight {
+  width: 100px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 186px;
+  left: 395px;
+}
+#playstation {
+  width: 90px;
+  height: 90px;
+  border-radius: 90%;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  top: 380px;
+  left: 705px;
+}
+#touchpad {
+  width: 387px;
+  height: 228px;
+  border-radius: 6%;
+  background-color: var(--color-primary);
+  position: absolute;
+  top: 44px;
+  left: 554px;
+}
+#ps4-connect {
+  margin: 40px;
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 90%;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  z-index: 2;
+}
+#ps4-connect:hover {
+  background-color: var(--color-secondary);
+}
+#ps4-connect:active {
+  background-color: var(--color-primary);
+}
+.pressed,
+.touched {
+  display: block !important;
+}
+
+.loading {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#ps4-connect:hover {
+  background-color: var(--color-secondary);
+}
+#ps4-connect:active {
+  background-color: var(--color-primary);
+}

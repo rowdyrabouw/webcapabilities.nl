@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web HID API + Web Bluetooth API</title>
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/script.js" type="module" defer></script>
+    <script type="module" src="../assets/webcomponents/index.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="menu-heading-wrapper">
+        <hamburger-menu current-page="web-hid-ps4"></hamburger-menu>
+        <h1>Web HID API</h1>
+      </div>
+      <browser-support chrome edge></browser-support>
+    </header>
+
+    <div>
+      <button id="ps4-connect">
+        <img src="assets/img/playstation.svg" alt="PS4" />
+      </button>
+    </div>
+
+    <div class="ps4">
+      <img src="assets/img/ps4.png" alt="PS4" class="ps4-image" />
+      <div id="leftStick">
+        <div id="leftStick-outer"></div>
+        <div id="leftStick-inner"></div>
+      </div>
+      <div id="rightStick">
+        <div id="rightStick-outer"></div>
+        <div id="rightStick-inner"></div>
+      </div>
+      <div id="cross"></div>
+      <div id="circle"></div>
+      <div id="square"></div>
+      <div id="triangle"></div>
+      <div id="l12">
+        <div id="l12-top"></div>
+        <div id="l12-middle"></div>
+        <div id="l12-bottom"></div>
+      </div>
+      <div id="r12">
+        <div id="r12-top"></div>
+        <div id="r12-middle"></div>
+        <div id="r12-bottom"></div>
+      </div>
+      <div id="share"></div>
+      <div id="options"></div>
+      <div id="dPadUp"></div>
+      <div id="dPadDown"></div>
+      <div id="dPadLeft"></div>
+      <div id="dPadRight"></div>
+      <div id="playstation"></div>
+      <div id="touchpad"></div>
+    </div>
+  </body>
+</html>
