@@ -1,5 +1,5 @@
-const shareButton = document.getElementById("share-button");
-shareButton.addEventListener("click", async () => {
+const sharePageButton = document.getElementById("share-page-button");
+sharePageButton.addEventListener("click", async () => {
   shareUrl();
 });
 
@@ -13,10 +13,7 @@ const shareUrl = async () => {
   }
 };
 
-const shareFilesButton = document.createElement("button");
-shareFilesButton.textContent = "Share files";
-document.body.appendChild(shareFilesButton);
-
+const shareFilesButton = document.getElementById("share-files-button");
 shareFilesButton.addEventListener("click", async () => {
   shareFile();
 });
@@ -27,9 +24,8 @@ const shareFile = async () => {
       type: "text/plain",
     });
 
-    const response = await fetch("fugu.pdf");
+    const response = await fetch("assets/pdf/fugu.pdf");
     const blob = await response.blob();
-    console.info("Blob: ", blob);
     const file2 = new File([blob], "fugu.pdf", { type: "application/pdf" });
 
     await navigator.share({
