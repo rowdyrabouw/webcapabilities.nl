@@ -5,9 +5,9 @@ document.querySelector("#connect").addEventListener("click", async () => {
     console.log(device);
     document.querySelector("#info").innerHTML = `
           <p>Manufacturer Name: ${device.manufacturerName}</p>
-          <p><em>Netum on the printer; Winbond Electronics Corporation based on vendorId</em></p>
-          </em></p>
           <p>Manufacturer Id: ${device.vendorId}</p>
+          <p><em>Netum on the printer; Winbond Electronics Corporation based on id</em></p>
+          </em></p>
           <p>Product Name: ${device.productName}</p>
           <p>Product Id: ${device.productId}</p>
           <p>Product version: ${device.deviceVersionMajor}.${device.deviceVersionMinor}</p>
