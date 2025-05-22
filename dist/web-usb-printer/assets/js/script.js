@@ -1,28 +1,40 @@
+let ably = null;
+
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   document.body.classList.add("local");
+  // use key from json file, instead of authUrl at Netlify
+  (async () => {
+    const response = await fetch("./ably.json");
+    const json = await response.json();
+    ably = new Ably.Realtime({
+      key: json.key,
+    });
+  })();
+} else {
+  // use authUrl at Netlify
+  ably = new Ably.Realtime({
+    authUrl: "/api/ably-token-request",
+  });
 }
 
-const optionalClientId = "optionalClientId"; // When not provided in authUrl, a default will be used.
-const ably = new Ably.Realtime({
-  authUrl: `/api/ably-token-request?clientId=${optionalClientId}`,
-});
-
-const ablyRealtimePromiseExample = async () => {
-  const channel = ably.channels.get("some-channel-name");
-
-  await channel.publish("hello-world-message", { message: "Hello world!", name: "Ably" });
-};
-
-ablyRealtimePromiseExample();
-
-// add event listerner to button
+// add event listener to button
 const button = document.querySelector("#sendMessage");
 const message = document.querySelector("#messageInput");
 const name = document.querySelector("#nameInput");
 button.addEventListener("click", async () => {
-  const channel = ably.channels.get("some-channel-name");
-  await channel.publish("hello-world-message", {
+  const channel = ably.channels.get("fugu");
+  await channel.publish("fugu", {
     message: message.value,
     name: name.value,
   });
 });
+
+// const video = document.getElementById("videoStream");
+
+// stream.addEventListener("click", async () => {
+//   await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+//     window.localStream = stream;
+//     video.srcObject = stream;
+//     video.play();
+//   });
+// });

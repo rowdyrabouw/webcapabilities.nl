@@ -1,3 +1,5 @@
+let printerConnected = false;
+
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   document.body.classList.add("local");
 }
@@ -6,27 +8,16 @@ import WebUSBReceiptPrinter from "./webusb-receipt-printer.esm.js";
 import ReceiptPrinterEncoder from "./receipt-printer-encoder.esm.js";
 
 const receiptPrinter = new WebUSBReceiptPrinter();
-let printerLanguage;
-let printerCodepageMapping;
 let encoder;
 
 receiptPrinter.addEventListener("connected", (device) => {
   console.log(`Connected to ${device.manufacturerName} ${device.productName} (#${device.serialNumber})`);
-
   console.log("Device info:");
   console.log(device);
-  printerLanguage = device.language;
-  printerCodepageMapping = device.codepageMapping;
-
   encoder = new ReceiptPrinterEncoder({
-    //   printerModel: "pos-8360",
-    language: printerLanguage,
-    //   codepageMapping: printerCodepageMapping,
+    language: device.language,
     columns: 32,
   });
-  // console.log(ReceiptPrinterEncoder.printerModels);
-  /* Store device for reconnecting */
-  // lastUsedDevice = device;
 });
 
 document.getElementById("connect").addEventListener("click", async () => {
@@ -34,6 +25,7 @@ document.getElementById("connect").addEventListener("click", async () => {
     console.log("WebUSB is supported");
     try {
       await receiptPrinter.connect();
+      printerConnected = true;
     } catch (error) {
       console.error(error);
     }
@@ -69,21 +61,29 @@ document.getElementById("print").addEventListener("click", async () => {
 });
 
 function printAblyMessage(ablyMessage) {
-  console.log("Printing Ably message", ablyMessage);
-  const data = encoder.initialize().text(ablyMessage.data.message).newline().text(ablyMessage.data.name).newline().encode();
-
-  /* Print the receipt */
-  receiptPrinter.print(data);
+  console.log("Printer connected", printerConnected);
+  if (printerConnected) {
+    console.log("Printing Ably message", ablyMessage);
+    const data = encoder.initialize().text(ablyMessage.data.message).newline().text(ablyMessage.data.name).newline().encode();
+    receiptPrinter.print(data);
+  }
 }
 
 (async () => {
-  // console.log("Oh hai! 🖤");
-
-  const optionalClientId = "optionalClientId"; // When not provided in authUrl, a default will be used.
-  const ably = new Ably.Realtime({
-    authUrl: `/api/ably-token-request?clientId=${optionalClientId}`,
-  });
-  const channel = ably.channels.get("some-channel-name");
+  let ably = null;
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    // use key from json file, instead of authUrl at Netlify
+    const response = await fetch("../ably.json");
+    const json = await response.json();
+    ably = new Ably.Realtime({
+      key: json.key,
+    });
+  } else {
+    ably = new Ably.Realtime({
+      authUrl: `/api/ably-token-request`,
+    });
+  }
+  const channel = ably.channels.get("fugu");
 
   await channel.subscribe((msg) => {
     console.log("Ably message received", msg);
