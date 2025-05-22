@@ -18,7 +18,8 @@ class HamburgerMenu extends HTMLElement {
     this.webUSB = this.shadowRoot.querySelector("#web-usb");
     this.webUSBPrinter = this.shadowRoot.querySelector("#web-usb-printer");
     this.webHIDKeyboard = this.shadowRoot.querySelector("#web-hid-keyboard");
-    this.webHIDBluetooth = this.shadowRoot.querySelector("#web-hid-bluetooth");
+    this.webHIDPs4 = this.shadowRoot.querySelector("#web-hid-ps4");
+    this.gamepadBluetooth = this.shadowRoot.querySelector("#gamepad-bluetooth");
     this.myHamburger = this.shadowRoot.querySelector("#hamburger");
     this.myNavMenu = this.shadowRoot.querySelector("#navMenu");
     this.closeNavMenu = this.shadowRoot.querySelector("#closeNavMenu");
@@ -69,8 +70,9 @@ class HamburgerMenu extends HTMLElement {
               <li><a id="web-share" href="/web-share">Web Share API</a></li>
               <li><a id="web-usb" href="/web-usb">Web USB API</a></li>
               <li><a id="web-usb-printer" href="/web-usb-printer">Web USB API (Ably)</a></li>
-              <li><a id="web-hid-keyboard" href="/web-hid-keyboard">Web HID API</a></li>
-              <li><a id="web-hid-bluetooth" href="/web-hid-bluetooth">Web HID + Bluetooth API</a></li>
+              <li><a id="web-hid-keyboard" href="/web-hid-keyboard">Web HID API (1)</a></li>
+              <li><a id="web-hid-ps4" href="/web-hid-ps4">Web HID API (2)</a></li>
+              <li><a id="gamepad-bluetooth" href="/gamepad-bluetooth">Gamepad + Bluetooth API</a></li>
             </ul>
           </div>
         </nav>
@@ -118,8 +120,11 @@ class HamburgerMenu extends HTMLElement {
       case "web-hid-keyboard":
         this.webHIDKeyboard.setAttribute("aria-current", "page");
         break;
-      case "web-hid-bluetooth":
-        this.webHIDBluetooth.setAttribute("aria-current", "page");
+      case "web-hid-ps4":
+        this.webHIDPs4.setAttribute("aria-current", "page");
+        break;
+      case "gamepad-bluetooth":
+        this.gamepadBluetooth.setAttribute("aria-current", "page");
         break;
     }
   }
