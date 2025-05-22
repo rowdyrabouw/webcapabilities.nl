@@ -25,7 +25,7 @@ document.querySelector("#blink").addEventListener("click", async () => {
 });
 
 const stream = document.getElementById("stream");
-const video = document.getElementById("videostreamId");
+const video = document.getElementById("videoStream");
 
 stream.addEventListener("click", async () => {
   await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
@@ -33,4 +33,8 @@ stream.addEventListener("click", async () => {
     video.srcObject = stream;
     video.play();
   });
+
+  setTimeout(() => {
+    video.requestPictureInPicture();
+  }, 1000);
 });
