@@ -1,3 +1,7 @@
+body {
+  touch-action: manipulation;
+}
+
 @media (max-width: 30rem) {
   header {
     flex-direction: column;
