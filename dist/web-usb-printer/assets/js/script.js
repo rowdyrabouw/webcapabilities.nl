@@ -29,14 +29,7 @@ button.addEventListener("click", async () => {
   document.querySelector("#thanks").classList.add("show");
 });
 
-let throttle = false;
-document.querySelector("body").addEventListener("click", (evt) => {
-  if (!throttle && evt.detail === 3) {
-    throttle = true;
-    setTimeout(function () {
-      message.value = "Someone cracked my password... Now I need to rename my cat.";
-      name.value = "Rowdy Rabouw";
-      throttle = false;
-    }, 500);
-  }
+document.querySelector("h1").addEventListener("click", () => {
+  message.value = "Someone cracked my password... Now I need to rename my cat.";
+  name.value = "Rowdy Rabouw";
 });
