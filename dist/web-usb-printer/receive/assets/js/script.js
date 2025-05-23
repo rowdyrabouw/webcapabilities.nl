@@ -1,9 +1,5 @@
 let printerConnected = false;
 
-if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-  document.body.classList.add("local");
-}
-
 import WebUSBReceiptPrinter from "./webusb-receipt-printer.esm.js";
 import ReceiptPrinterEncoder from "./receipt-printer-encoder.esm.js";
 
@@ -34,40 +30,16 @@ document.getElementById("connect").addEventListener("click", async () => {
   }
 });
 
-document.getElementById("print").addEventListener("click", async () => {
-  const ablyMessage = {
-    name: "hello-world-message",
-    clientId: "optionalClientId",
-    action: "message.create",
-    encoding: null,
-    data: {
-      message: "What kind of computer sings the best? ... A Dell.",
-      name: "Rowdy Rabouw",
-    },
-    connectionId: "45Ds_5n_ao",
-    timestamp: 1746679646266,
-    id: "45Ds_5n_ao:1:0",
-    createdAt: 1746679646266,
-  };
-  try {
-    let data = encoder.initialize().text(ablyMessage.data.message).newline().text(ablyMessage.data.name).newline().encode();
-
-    /* Print the receipt */
-
-    receiptPrinter.print(data);
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-function printAblyMessage(ablyMessage) {
+const printMessage = (ablyMessage) => {
   console.log("Printer connected", printerConnected);
   if (printerConnected) {
-    console.log("Printing Ably message", ablyMessage);
-    const data = encoder.initialize().text(ablyMessage.data.message).newline().text(ablyMessage.data.name).newline().encode();
+    console.log("Printing message", ablyMessage);
+    const message = emojiStrip(ablyMessage.data.message).trim();
+    const name = emojiStrip(ablyMessage.data.name).trim();
+    const data = encoder.initialize().text(message).newline().text(name).newline().newline().encode();
     receiptPrinter.print(data);
   }
-}
+};
 
 (async () => {
   let ably = null;
@@ -87,7 +59,39 @@ function printAblyMessage(ablyMessage) {
 
   await channel.subscribe((msg) => {
     console.log("Ably message received", msg);
-    document.getElementById("response").innerHTML += "<br />" + JSON.stringify(msg);
-    printAblyMessage(msg);
+    if (msg.data.message.length > 0) {
+      if (msg.data.message.length > 100) {
+        msg.data.message = msg.data.message.substring(0, 200) + "...";
+      }
+      if (msg.data.name.length > 15) {
+        msg.data.name = msg.data.name.substring(0, 25) + "...";
+      }
+      const id = `sb${Date.now()}`;
+      const item = `<p id="${id}" class="speech-bubble">${msg.data.message}<br/><em>${msg.data.name}</em></p>`;
+      document.querySelector("#response").innerHTML += item;
+      document.querySelector(`#${id}`).scrollIntoView({
+        behavior: "smooth",
+      });
+      printMessage(msg);
+    }
   });
 })();
+
+const stream = document.querySelector("#stream");
+const video = document.querySelector("#videoStream");
+
+stream.addEventListener("click", async () => {
+  await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+    window.localStream = stream;
+    video.srcObject = stream;
+    video.play();
+  });
+  setTimeout(() => {
+    video.requestPictureInPicture();
+  }, 1000);
+});
+
+const qr = document.querySelector("#qr");
+qr.addEventListener("click", async () => {
+  document.querySelector(".qr-code").classList.add("show");
+});

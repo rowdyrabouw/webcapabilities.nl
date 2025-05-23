@@ -1,7 +1,6 @@
 let ably = null;
 
 if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-  document.body.classList.add("local");
   // use key from json file, instead of authUrl at Netlify
   (async () => {
     const response = await fetch("./ably.json");
@@ -17,24 +16,27 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   });
 }
 
-// add event listener to button
 const button = document.querySelector("#sendMessage");
-const message = document.querySelector("#messageInput");
-const name = document.querySelector("#nameInput");
+const message = document.querySelector("#message");
+const name = document.querySelector("#name");
 button.addEventListener("click", async () => {
   const channel = ably.channels.get("fugu");
   await channel.publish("fugu", {
     message: message.value,
     name: name.value,
   });
+  document.querySelector("#form").classList.add("hidden");
+  document.querySelector("#thanks").classList.add("show");
 });
 
-// const video = document.getElementById("videoStream");
-
-// stream.addEventListener("click", async () => {
-//   await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-//     window.localStream = stream;
-//     video.srcObject = stream;
-//     video.play();
-//   });
-// });
+let throttle = false;
+document.querySelector("body").addEventListener("click", function (evt) {
+  if (!throttle && evt.detail === 3) {
+    throttle = true;
+    setTimeout(function () {
+      message.value = "Someone cracked my password... Now I need to rename my cat.";
+      name.value = "Rowdy Rabouw";
+      throttle = false;
+    }, 500);
+  }
+});

@@ -6,7 +6,9 @@
     <title>Web USB API</title>
     <link rel="icon" href="../../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script src="../assets/js/ably.min-2.js"></script>
+    <script src="assets/js/emoji-strip.js"></script>
     <script type="module" src="assets/js/script.js" defer></script>
     <script type="module" src="../../assets/webcomponents/index.js"></script>
   </head>
@@ -19,13 +21,19 @@
       <browser-support chrome edge chrome-mobile></browser-support>
     </header>
 
-    <button id="connect">Connect USB</button>
-    <button id="print">Make test print</button>
+    <video id="videoStream" controls></video>
 
-    <div id="response">
-      <h2>Ably messages will append here.</h2>
+    <div class="button-wrapper">
+      <div>
+        <button id="stream">Camera</button>
+        <button id="connect">Connect</button>
+        <button id="qr">QR code</button>
+      </div>
+      <img src="assets/img/qr-web-usb.svg" alt="QR code" class="qr-code" />
     </div>
 
-    <script type="module"></script>
+    <div class="wrapper">
+      <div id="response"></div>
+    </div>
   </body>
 </html>

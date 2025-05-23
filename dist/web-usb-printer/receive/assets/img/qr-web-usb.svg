@@ -7,7 +7,7 @@
    </desc>
 
    <g id="barcode" fill="#000000">
-      <rect x="0" y="0" width="5197" height="5197" fill="#FFFFFF" />
+      <rect x="0" y="0" width="5197" height="5197" fill="none" />
       <rect x="0.00" y="0.00" width="1254.40" height="179.20" />
       <rect x="1433.60" y="0.00" width="716.80" height="179.20" />
       <rect x="2329.60" y="0.00" width="179.20" height="358.40" />

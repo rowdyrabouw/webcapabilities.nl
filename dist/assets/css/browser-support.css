@@ -10,6 +10,9 @@
     fill: rgba(1, 53, 47, 0.4);
     position: relative;
   }
+  @media (max-width: 30rem) {
+    gap: 8px;
+  }
   svg.supported {
     fill: rgb(1, 53, 47);
   }

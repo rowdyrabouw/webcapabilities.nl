@@ -20,16 +20,13 @@
       <browser-support chrome edge chrome-mobile></browser-support>
     </header>
 
-
-        <div>
-    <video id="videoStream" controls></video>
-          <h2>Reveal QR on button click</h2>
-          <img src="assets/img /qr-web-usb.svg" alt="QR code" class="qr-code" />
-          <input type="text" id="messageInput" placeholder="Type a message to send to Ably" value="What kind of computer sings the best?... A Dell." />
-          <input type="text" id="nameInput" placeholder="Channel name" value="Rowdy Rabouw" />
-          <button id="sendMessage">Send Message</button>
-        </div>
-      </body>
-    </html>
+    <div id="form">
+      <label for="name">Name</label>
+      <input type="text" id="name" maxlength="25" />
+      <label for="message">Joke</label>
+      <textarea id="message" maxlength="200"></textarea>
+      <button id="sendMessage">Send Message</button>
+    </div>
+    <p id="thanks">Thank you for your joke!</p>
   </body>
 </html>

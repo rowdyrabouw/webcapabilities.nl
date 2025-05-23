@@ -1,0 +1,88 @@
+body {
+  overflow: scroll;
+}
+
+.qr-code {
+  height: 200px;
+  display: none;
+}
+
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+  margin-block-start: 32px;
+}
+
+.speech-bubble {
+  position: relative;
+  background-color: rgb(237, 208, 80);
+  border-radius: 0.4em;
+  width: fit-content;
+  padding: 16px;
+  margin: 16px;
+  em {
+    font-size: 1.25rem;
+  }
+  &:nth-of-type(even) {
+    background-color: rgb(233, 152, 70);
+    align-self: end;
+    &::after {
+      left: auto;
+      right: 0;
+      border: 18px solid transparent;
+      border-left-color: rgb(233, 152, 70);
+      border-right: 0;
+      margin-top: -18px;
+      margin-right: -18px;
+    }
+  }
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 18px solid transparent;
+  border-right-color: rgb(237, 208, 80);
+  border-left: 0;
+  margin-top: -18px;
+  margin-left: -18px;
+}
+
+#response {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 32px;
+  p {
+    margin-block: 8px;
+  }
+}
+
+#videoStream {
+  position: absolute;
+  width: 50px;
+  top: -999px;
+}
+
+.button-wrapper {
+  height: 200px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-block-start: 16px;
+  margin-inline-start: 24px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+.show {
+  display: block;
+}
