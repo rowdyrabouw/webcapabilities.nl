@@ -79,6 +79,7 @@ const printMessage = (ablyMessage) => {
 
 const stream = document.querySelector("#stream");
 const video = document.querySelector("#videoStream");
+const pipContent = document.querySelector("#pipContent");
 
 stream.addEventListener("click", async () => {
   await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
@@ -94,4 +95,29 @@ stream.addEventListener("click", async () => {
 const qr = document.querySelector("#qr");
 qr.addEventListener("click", async () => {
   document.querySelector(".qr-code").classList.add("show");
+  togglePipContent();
 });
+
+const togglePipContent = async () => {
+  if (window.documentPictureInPicture.window) {
+    pipContainer.append(pipContent);
+    window.documentPictureInPicture.window.close();
+    return;
+  }
+  const pipWindow = await window.documentPictureInPicture.requestWindow({
+    width: 300,
+    height: 300,
+  });
+  [...document.styleSheets].forEach((styleSheet) => {
+    const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join("");
+    const style = document.createElement("style");
+    style.textContent = cssRules;
+    style.textContent += `body { margin: 32px; background: linear-gradient(180deg, rgb(236, 225, 81) 0%, rgb(232, 99, 63) 100%); display: flex; justify-content: center; }`;
+    pipWindow.document.head.appendChild(style);
+  });
+  pipWindow.document.body.append(pipContent);
+
+  pipWindow.addEventListener("pagehide", (event) => {
+    pipContainer.append(pipContent);
+  });
+};
