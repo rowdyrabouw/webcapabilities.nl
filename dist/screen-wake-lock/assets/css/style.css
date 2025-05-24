@@ -48,6 +48,8 @@ section {
   border-radius: 4px;
   background-color: aliceblue;
   font-size: 1.25rem;
+  max-width: 700px;
+  margin: 32px auto;
 }
 
 ul {

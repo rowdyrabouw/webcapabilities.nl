@@ -24,3 +24,29 @@ const releaseWakelock = async () => {
 
 wakeLockRequest.addEventListener("click", requestWakelock);
 wakeLockRelease.addEventListener("click", releaseWakelock);
+
+let timeInSecs;
+let ticker;
+
+const tick = () => {
+  let secs = timeInSecs;
+  if (secs > 0) {
+    timeInSecs--;
+  } else {
+    clearInterval(ticker);
+  }
+
+  let mins = Math.floor(secs / 60);
+  secs %= 60;
+  let pretty = (mins < 10 ? "0" : "") + mins + ":" + (secs < 10 ? "0" : "") + secs;
+  document.querySelector("#countdown").innerHTML = pretty;
+};
+
+const startTimer = (secs) => {
+  timeInSecs = parseInt(secs);
+  ticker = setInterval(() => {
+    tick();
+  }, 1000);
+};
+
+startTimer(30);
