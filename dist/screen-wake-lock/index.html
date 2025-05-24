@@ -6,6 +6,7 @@
     <title>Screen Wake Lock API</title>
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script type="module" src="assets/js/script.js" defer></script>
     <script type="module" src="../assets/webcomponents/index.js"></script>
   </head>
@@ -18,45 +19,63 @@
       <browser-support chrome edge firefox safari chrome-mobile safari-mobile></browser-support>
     </header>
 
-    <p>The Wakelock API allows you to request a wake lock to prevent the device from sleeping.</p>
-    <button id="request-wakelock">Request Wakelock</button>
-    <button id="release-wakelock">Release Wakelock</button>
+    <div class="button-wrapper">
+      <button id="request-wakelock">Request Wakelock</button>
+      <button id="release-wakelock" class="hidden">Release Wakelock</button>
+      <span id="wakelock-status"></span>
+    </div>
 
-    <pre>
-🍣 Basic Sushi Roll (Maki) Recipe
+    <section>
+      <p>
+        <strong>🍣&nbsp; Basic Sushi Roll (Maki) Recipe</strong>
+      </p>
 
-🧂 Ingredients:
-2 cups sushi rice (short-grain rice)
-2 1/2 cups water (for cooking rice)
-1/3 cup rice vinegar
-3 tbsp sugar
-1 tsp salt
-Nori (seaweed sheets)
-Fillings (choose your favorites):
-Sliced raw or cooked fish (salmon, tuna, imitation crab)
-Julienne cucumber
-Avocado slices
-Cream cheese, pickled radish, etc.
-Soy sauce, wasabi, and pickled ginger (for serving)
-
-🍚 Step 1: Prepare the Rice
-Rinse sushi rice under cold water until the water runs clear.
-Cook rice with 2 1/2 cups of water (use a rice cooker or stovetop).
-While rice cooks, mix vinegar, sugar, and salt in a small saucepan over low heat until dissolved. Cool it.
-Once rice is done, gently fold in the vinegar mixture with a wooden spoon. Let cool to room temperature.
-
-🍙 Step 2: Roll the Sushi
-Place a bamboo mat on a flat surface and cover it with plastic wrap.
-Lay one sheet of nori on the mat, shiny side down.
-Wet your hands and spread a thin layer of sushi rice over the nori, leaving a 1-inch strip bare at the top.
-Add fillings in a line across the center.
-Lift the edge of the mat and begin to roll tightly. Wet the edge of the nori to seal.
-Use a sharp knife to cut into 6–8 pieces (wet the knife between cuts for clean slices).
-
-🍽️ Step 3: Serve
-Arrange on a plate with soy sauce, wasabi, and pickled ginger.
-
-</pre
-    >
+      <p>
+        <strong>🧂&nbsp; Ingredients</strong>
+        <ul>
+          <li>2 cups sushi rice</li>
+          <li>2 1/2 cups water</li>
+          <li>1/3 cup rice vinegar</li>
+          <li>3 tbsp sugar</li>
+          <li>1 tsp salt</li>
+          <li>Nori (seaweed sheets)</li>
+          <li>Fillings (choose your favorites):</li>
+          <ul>
+            <li>Sliced raw or cooked fish (salmon, tuna, imitation crab)</li>
+            <li>Julienne cucumber</li>
+            <li>Avocado slices</li>
+            <li>Cream cheese, pickled radish, etc.</li>
+          </ul>
+          <li>Soy sauce, wasabi, and pickled ginger (for serving)</li>
+        </ul>
+      </p>
+      <p>
+        <strong>🍚&nbsp; Step 1: Prepare the Rice</strong>
+        <ul>
+          <li>Rinse sushi rice under cold water until the water runs clear.</li>
+          <li>Cook rice with 2 1/2 cups of water (use a rice cooker or stovetop).</li>
+          <li>While rice cooks, mix vinegar, sugar, and salt in a small saucepan over low heat until dissolved. Cool it.</li>
+          <li>Once rice is done, gently fold in the vinegar mixture with a wooden spoon. Let cool to room temperature.</li>
+        </ul>
+      </p>
+      <p>
+        <strong>🍙&nbsp; Step 2: Roll the Sushi</strong>
+        <ul>
+          <li>Place a bamboo mat on a flat surface and cover it with plastic wrap.</li>
+          <li>Lay one sheet of nori on the mat, shiny side down.</li>
+          <li>Wet your hands and spread a thin layer of sushi rice over the nori, leaving a 1-inch strip bare at the top.</li>
+          <li>Add fillings in a line across the center.</li>
+          <li>Lift the edge of the mat and begin to roll tightly. Wet the edge of the nori to seal.</li>
+          <li>Use a sharp knife to cut into 6–8 pieces (wet the knife between cuts for clean slices).</li>
+          </ul>
+      </p>
+      <p>
+        <strong>🍽️&nbsp; Step 3: Serve</strong>
+        <ul>
+          <li>Arrange sushi rolls on a plate.</li>
+          <li>Serve with soy sauce, wasabi, and pickled ginger.</li>
+          </ul>
+      </p>
+    </section>
   </body>
 </html>
