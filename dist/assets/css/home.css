@@ -1,0 +1,30 @@
+body {
+  overflow: scroll;
+  margin-block-end: 400px;
+}
+
+@media (max-width: 30rem) {
+  header {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    padding: 0;
+  }
+  h1 {
+    font-size: 2rem;
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+  }
+}
+
+.hero-image {
+  margin-block-start: 32px;
+  display: flex;
+  justify-content: center;
+  img {
+    height: 600px;
+    @media (max-width: 30rem) {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}

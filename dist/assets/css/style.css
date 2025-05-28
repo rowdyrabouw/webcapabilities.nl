@@ -102,15 +102,6 @@ h1 {
   }
 }
 
-.hero-image {
-  margin-block-start: 32px;
-  display: flex;
-  justify-content: center;
-  img {
-    height: 600px;
-  }
-}
-
 .menu-wrapper {
   display: flex;
   gap: 32px;
