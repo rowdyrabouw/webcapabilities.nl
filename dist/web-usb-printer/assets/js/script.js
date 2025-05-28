@@ -20,6 +20,14 @@ const button = document.querySelector("#sendMessage");
 const message = document.querySelector("#message");
 const name = document.querySelector("#name");
 button.addEventListener("click", async () => {
+  if (!message.value || !name.value) {
+    alert("Please fill in both fields.");
+    return;
+  }
+  if (!ably) {
+    alert("Ably is not initialized. Please try again later.");
+    return;
+  }
   const channel = ably.channels.get("fugu");
   await channel.publish("fugu", {
     message: message.value,
