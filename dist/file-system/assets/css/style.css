@@ -1,0 +1,36 @@
+@media (max-width: 30rem) {
+  header {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    padding: 0;
+  }
+  h1 {
+    font-size: 2rem;
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+  }
+  .button-wrapper {
+    margin-block-start: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-inline: 32px;
+    margin-block-end: 32px;
+  }
+}
+
+@media (min-width: 30rem) {
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    margin-block-start: 128px;
+    margin-block-end: 32px;
+  }
+}
+
+pre {
+  color: rgb(255, 255, 255);
+  width: fit-content;
+  margin: 0 auto;
+}
