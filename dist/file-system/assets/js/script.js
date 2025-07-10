@@ -1,3 +1,5 @@
+import { faker } from "./faker.js";
+
 const btnWriteFile = document.querySelector("#writeFile");
 btnWriteFile.addEventListener("click", async () => {
   const fileHandle = await window.showSaveFilePicker({
@@ -6,11 +8,15 @@ btnWriteFile.addEventListener("click", async () => {
         accept: { "text/plain": [".txt"] },
       },
     ],
+    // FileSystemHandle or known directory ("desktop", "documents", "downloads", "music", "pictures", or "videos")
+    startIn: "desktop",
+    suggestedName: "random-people.txt",
   });
-
   const date = new Date();
-  let text = `File generated on ${date.toLocaleDateString()}\n`;
-  text += "test";
+  let text = `File generated on ${date.toISOString().substring(0, 10)}\n\n`;
+  for (let i = 0; i < 10; i++) {
+    text += `${faker.date.birthdate().toISOString().substring(0, 10)}\t${faker.person.fullName()}\n`;
+  }
   const writable = await fileHandle.createWritable();
   await writable.write(text);
   await writable.close();
