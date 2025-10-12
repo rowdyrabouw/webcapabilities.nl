@@ -1,4 +1,5 @@
 let printerConnected = false;
+let jokeNumber = 0;
 
 import WebUSBReceiptPrinter from "./webusb-receipt-printer.esm.js";
 import ReceiptPrinterEncoder from "./receipt-printer-encoder.esm.js";
@@ -72,25 +73,14 @@ const printMessage = (ablyMessage) => {
       document.querySelector(`#${id}`).scrollIntoView({
         behavior: "smooth",
       });
+      jokeNumber += 1;
+      document.querySelector("#prompt").value += `${jokeNumber}. ${msg.data.message.trim()} [${msg.data.name.trim()}]\n`;
       printMessage(msg);
+      const selectJokeButton = document.querySelector("#select");
+      selectJokeButton.classList.remove("hide");
     }
   });
 })();
-
-const stream = document.querySelector("#stream");
-const video = document.querySelector("#videoStream");
-const pipContent = document.querySelector("#pipContent");
-
-stream.addEventListener("click", async () => {
-  await navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-    window.localStream = stream;
-    video.srcObject = stream;
-    video.play();
-  });
-  setTimeout(() => {
-    video.requestPictureInPicture();
-  }, 1000);
-});
 
 const qr = document.querySelector("#qr");
 qr.addEventListener("click", async () => {

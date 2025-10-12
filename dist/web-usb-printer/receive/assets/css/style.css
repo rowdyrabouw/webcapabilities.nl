@@ -16,7 +16,7 @@ body {
 .speech-bubble {
   position: relative;
   background-color: rgb(237, 208, 80);
-  border-radius: 0.4em;
+  border-radius: 8px;
   width: fit-content;
   padding: 16px;
   margin: 16px;
@@ -61,23 +61,14 @@ body {
   }
 }
 
-#videoStream {
-  position: absolute;
-  width: 50px;
-  top: -999px;
-}
-
 .button-wrapper {
-  height: 200px;
   display: flex;
-  gap: 16px;
   justify-content: center;
-  margin-block-start: 16px;
-  margin-inline-start: 24px;
+  margin-block-start: 32px;
 
   div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     gap: 8px;
   }
@@ -85,4 +76,58 @@ body {
 
 .show {
   display: block;
+}
+
+#select {
+  margin: 0 auto;
+  display: block;
+  margin-block-start: 32px;
+  span {
+    display: block;
+    margin-block-end: 16px;
+  }
+  svg {
+    display: block;
+  }
+}
+
+#prompt {
+  display: none;
+}
+
+#prompt-output {
+  display: none;
+}
+
+#prompt-content {
+  background-color: rgb(255, 255, 255);
+  max-width: 80ch;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-block-end: 600px;
+}
+
+.fugu {
+  width: 125px;
+  margin: 0 auto;
+  display: block;
+  margin-block-start: 50px;
+}
+
+.rotate {
+  animation: rotation 2s infinite ease-in-out;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.hide {
+  visibility: hidden;
 }
