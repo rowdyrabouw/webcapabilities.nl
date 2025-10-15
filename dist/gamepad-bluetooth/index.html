@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web HID API + Web Bluetooth API</title>
+    <title>Gamepad API + Web Bluetooth API</title>
     <link rel="icon" href="../icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -24,12 +24,13 @@
     <div class="ps4">
       <img src="assets/img/ps4.png" alt="PS4" class="ps4-image" />
       <div id="drone-connect-wrapper">
-        <button id="drone-connect">
+        <button id="drone-connect" hidden>
           <img src="assets/img/drone.svg" alt="Drone" />
         </button>
-        <div id="battery">
+        <div id="battery" class="connected">
           <img src="assets/img/battery.svg" />
           <span id="batteryLevel"></span>
+          <div id="command">&nbsp;</div>
         </div>
       </div>
       <div id="leftStick">

@@ -227,10 +227,15 @@
   left: 554px;
 }
 
-.connected,
 .pressed,
 .touched {
   display: block !important;
+}
+
+.connected {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hide {
@@ -263,6 +268,15 @@
   align-items: center;
 }
 
+#command {
+  font-weight: 900;
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  margin-block-end: 1.5rem;
+  width: 380px;
+  text-align: center;
+}
+
 #drone-connect {
   width: 200px;
   height: 200px;
@@ -279,9 +293,9 @@
 #battery {
   display: none;
   position: relative;
-  width: 200px;
   & img {
-    max-width: 100%;
+    width: 200px;
+    /* max-width: 100%; */
   }
 }
 

@@ -39,14 +39,14 @@ let ParrotDrone = function () {
   }
 
   function _startNotificationsForCharacteristic(serviceID, characteristicID) {
-    console.log("Start notifications for", characteristicID);
+    // console.log("Start notifications for", characteristicID);
 
     return new Promise((resolve, reject) => {
       return _getCharacteristic(serviceID, characteristicID)
         .then((characteristic) => {
           // console.log('Got characteristic, now start notifications', characteristicID, characteristic);
           characteristic.startNotifications().then(() => {
-            console.log("Started notifications for", characteristicID);
+            // console.log("Started notifications for", characteristicID);
 
             characteristic.addEventListener("characteristicvaluechanged", (event) => {
               const array = new Uint8Array(event.target.value.buffer);
@@ -56,30 +56,30 @@ let ParrotDrone = function () {
                 a.push("0x" + ("00" + array[i].toString(16)).slice(-2));
               }
 
-              console.log("Notification from " + characteristicID + ": " + a.join(" "));
+              // console.log("Notification from " + characteristicID + ": " + a.join(" "));
 
               if (characteristicID === "fb0e") {
                 var eventList = ["fsLanded", "fsTakingOff", "fsHovering", "fsUnknown", "fsLanding", "fsCutOff"];
 
                 if (eventList[array[6]] === "fsHovering") {
-                  console.log("Hovering - ready to go");
+                  // console.log("Hovering - ready to go");
                 } else {
-                  console.log("Not hovering... Not ready", array[6]);
+                  // console.log("Not hovering... Not ready", array[6]);
                 }
 
                 if ([1, 2, 3, 4].indexOf(array[6]) >= 0) {
-                  console.log("Flying");
+                  // console.log("Flying");
                 } else {
-                  console.log("Not flying");
+                  // console.log("Not flying");
                 }
               } else if (characteristicID === "fb0f") {
                 const batteryLevel = array[array.length - 1];
 
-                console.info(`Battery Level: ${batteryLevel}%`);
+                // console.info(`Battery Level: ${batteryLevel}%`);
                 document.querySelector("#batteryLevel").innerText = `${batteryLevel}%`;
 
                 if (batteryLevel < 10) {
-                  console.error("Battery level too low!");
+                  // console.error("Battery level too low!");
                 }
               }
             });
@@ -95,23 +95,23 @@ let ParrotDrone = function () {
   }
 
   function _discover() {
-    console.log("Searching for drone...");
+    // console.log("Searching for drone...");
     return navigator.bluetooth
       .requestDevice({
         filters: [{ namePrefix: "RS_" }, { namePrefix: "Mars_" }, { namePrefix: "Travis_" }],
         optionalServices: [_getUUID("fa00"), _getUUID("fb00"), _getUUID("fd21"), _getUUID("fd51")],
       })
       .then((device) => {
-        console.log("Discovered drone", device);
+        // console.log("Discovered drone", device);
         droneDevice = device;
       });
   }
 
   function _connectGATT() {
-    console.log("Connect GATT");
+    // console.log("Connect GATT");
 
     return droneDevice.gatt.connect().then((server) => {
-      console.log("GATT server", server);
+      // console.log("GATT server", server);
       gattServer = server;
     });
   }
@@ -125,7 +125,7 @@ let ParrotDrone = function () {
         // console.log('Return cached service', service);
         resolve(service);
       } else {
-        console.log("Get service", _getUUID(serviceID));
+        // console.log("Get service", _getUUID(serviceID));
 
         return gattServer
           .getPrimaryService(_getUUID(serviceID))
@@ -148,7 +148,7 @@ let ParrotDrone = function () {
 
       // If we already have it cached...
       if (char) {
-        console.log("Return cached characteristic", char);
+        // console.log("Return cached characteristic", char);
         resolve(char);
       } else {
         return _getService(serviceID)
@@ -157,7 +157,7 @@ let ParrotDrone = function () {
           })
           .then((characteristic) => {
             characteristics[characteristicID] = characteristic;
-            console.log("Obtained characteristic", characteristic);
+            // console.log("Obtained characteristic", characteristic);
             resolve(characteristic);
           })
           .catch((error) => {
@@ -173,7 +173,7 @@ let ParrotDrone = function () {
     var command = new Uint8Array(buffer);
     command.set(commandArray);
 
-    console.log("Write command", command);
+    // console.log("Write command", command);
 
     return characteristic.writeValue(command);
   }
@@ -182,13 +182,13 @@ let ParrotDrone = function () {
     return _getCharacteristic(serviceID, characteristicID).then((characteristic) => {
       // console.log('Got characteristic, now write');
       return _writeCommand(characteristic, commandArray).then(() => {
-        console.log("Written command");
+        // console.log("Written command");
       });
     });
   }
 
   function _startNotifications() {
-    console.log("Start notifications...");
+    // console.log("Start notifications...");
 
     return _startNotificationsForCharacteristic("fb00", "fb0f")
       .then(() => {
@@ -219,7 +219,7 @@ let ParrotDrone = function () {
         return _startNotificationsForCharacteristic("fd51", "fd54");
       })
       .then(() => {
-        console.log("Finished starting notifications");
+        // console.log("Finished starting notifications");
       })
       .catch((error) => {
         console.error("Failed to start notifications", error);
@@ -227,7 +227,7 @@ let ParrotDrone = function () {
   }
 
   function _handshake() {
-    console.log("Handshake");
+    // console.log("Handshake");
 
     return droneDevice.gatt.connect().then(() => {
       return _writeTo("fa00", "fa0b", [4, ++steps.fa0b, 0, 4, 1, 0, 0x32, 0x30, 0x31, 0x34, 0x2d, 0x31, 0x30, 0x2d, 0x32, 0x38, 0x00]);
@@ -235,7 +235,7 @@ let ParrotDrone = function () {
   }
 
   function _hover() {
-    console.log("Hover");
+    // console.log("Hover");
 
     driveStepsRemaining = 0;
     speeds.yaw = 0;
@@ -245,10 +245,10 @@ let ParrotDrone = function () {
   }
 
   function _startPing() {
-    console.log("Start ping");
+    // console.log("Start ping");
 
     ping = setInterval(() => {
-      console.log("Ping...");
+      // console.log("Ping...");
 
       _writeTo("fa00", "fa0a", [2, ++steps.fa0a, 2, 0, 2, 0, driveStepsRemaining ? 1 : 0, speeds.roll, speeds.pitch, speeds.yaw, speeds.altitude, 0, 0, 0, 0, 0, 0, 0, 0]).catch(_onBluetoothError);
 
@@ -256,17 +256,17 @@ let ParrotDrone = function () {
         driveStepsRemaining--;
 
         if (driveStepsRemaining === 0) {
-          console.log("Move complete, reset to hover state");
+          // console.log("Move complete, reset to hover state");
           _hover();
         } else {
-          console.log("Drive steps remaining", driveStepsRemaining);
+          // console.log("Drive steps remaining", driveStepsRemaining);
         }
       }
     }, 50);
   }
 
   function _setSpeed(property, speed, driveSteps) {
-    console.log(`Change ${property} to ${speed}`);
+    // console.log(`Change ${property} to ${speed}`);
 
     const props = ["yaw", "pitch", "roll", "altitude"];
 
@@ -292,11 +292,11 @@ let ParrotDrone = function () {
     connect: function () {
       return new Promise((resolve) => {
         if (connected) {
-          console.log("Already connected");
+          // console.log("Already connected");
           return resolve();
         }
 
-        console.log("Connect");
+        // console.log("Connect");
 
         return _discover()
           .then(() => {
@@ -314,14 +314,14 @@ let ParrotDrone = function () {
           })
           .then(() => {
             connected = true;
-            console.log("Completed handshake");
+            // console.log("Completed handshake");
             resolve();
           });
       });
     },
 
     takeOff: function () {
-      console.log("Take off...");
+      // console.log("Take off...");
       return droneDevice.gatt
         .connect()
         .then(() => {
@@ -339,7 +339,7 @@ let ParrotDrone = function () {
     },
 
     flip: function () {
-      console.log("Flip...");
+      // console.log("Flip...");
       return droneDevice.gatt
         .connect()
         .then(() => {
@@ -349,7 +349,7 @@ let ParrotDrone = function () {
     },
 
     land: function () {
-      console.log("Land...");
+      // console.log("Land...");
       return droneDevice.gatt
         .connect()
         .then(() => {
